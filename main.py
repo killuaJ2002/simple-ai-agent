@@ -5,7 +5,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.agents import create_tool_calling_agent, AgentExecutor
-from tools import search_tool, wiki_tool
+from tools import search_tool, wiki_tool, word_counter
 
 
 class ResearchResponse(BaseModel):
@@ -38,7 +38,7 @@ prompt = ChatPromptTemplate.from_messages(
 ).partial(format_instructions=parser.get_format_instructions())
 
 # Tools used
-tools = [search_tool, wiki_tool]
+tools = [search_tool, wiki_tool, word_counter]
 
 # Agent setup 
 agent = create_tool_calling_agent(
